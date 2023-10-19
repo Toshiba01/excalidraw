@@ -5,21 +5,18 @@ services:
     build:
       context: .
       args:
-        - NODE_ENV=development
+        - NODE_ENV=production
     container_name: excalidraw
     ports:
-      - "3000:80"
+      - "3280:80"
     restart: on-failure
     stdin_open: true
     healthcheck:
       disable: true
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
     volumes:
-      - ./:/opt/node_app/app:delegated
-      - ./package.json:/opt/node_app/package.json
-      - ./yarn.lock:/opt/node_app/yarn.lock
-      - notused:/opt/node_app/app/node_modules
-
-volumes:
-  notused:
+      - /docker_data/excali:/opt/node_app/app:delegated
+      - /docker_data/excali/package.json:/opt/node_app/package.json
+      - /docker_data/excali/yarn.lock:/opt/node_app/yarn.lock
+      - /docker_data/excali/notused:/opt/node_app/app/node_modules
